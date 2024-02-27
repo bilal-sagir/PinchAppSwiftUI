@@ -15,7 +15,7 @@ struct ContentView: View {
     @State private var imageOffset: CGSize = .zero
     // MARK: - FUNCTIONS
     
-    func resetImageState() { // not used
+    func resetImageState() {
         return withAnimation(.spring()) {
             imageScale = 1
             imageOffset = .zero
@@ -26,7 +26,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.clear
+                
+                Color.clear // added to handle the info panel layout
+                
                 // MARK: - PAGE IMAGE
                 Image("magazine-front-cover")
                     .resizable()
@@ -80,6 +82,56 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .padding(.top, 30)
                 , alignment: .top
+            )
+            
+            // MARK: - CONTROLS
+            .overlay(
+                Group{
+                    HStack {
+                        // SCALE DOWN
+                        Button {
+                            withAnimation(.spring()) {
+                                if imageScale > 1 {
+                                    imageScale -= 1
+                                    
+                                    if imageScale <= 1 {
+                                        resetImageState()
+                                    }
+                                }
+                            }
+                        } label: {
+                            ControlImageView(icon: "minus.magnifyingglass")
+                        }
+                        // RESET
+                        Button {
+                            resetImageState()
+                        } label: {
+                            ControlImageView(icon: "arrow.up.left.and.down.right.magnifyingglass")
+                        }
+                        // SCALE UP
+                        Button {
+                            withAnimation(.spring()) {
+                                if imageScale < 5 {
+                                    imageScale += 1
+                                    
+                                    if imageScale > 5 {
+                                        imageScale = 5
+                                    }
+                                }
+                            }
+                        } label: {
+                            ControlImageView(icon: "plus.magnifyingglass")
+                        }
+                    } //: CONTROLS
+                    .padding(EdgeInsets(top: 12,
+                                        leading: 20,
+                                        bottom: 12,
+                                        trailing: 20))
+                    .background(.ultraThinMaterial)
+                    .opacity(isAnimating ? 1 : 0)
+                }
+                    .padding(.bottom, 30)
+                , alignment: .bottom
             )
         } //: NAVIGATION
     }

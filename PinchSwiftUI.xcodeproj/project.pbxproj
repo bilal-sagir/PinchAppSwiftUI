@@ -12,6 +12,7 @@
 		9C18259B2B8A842F00F64B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C18259A2B8A842F00F64B17 /* Assets.xcassets */; };
 		9C18259E2B8A842F00F64B17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C18259D2B8A842F00F64B17 /* Preview Assets.xcassets */; };
 		9C7350232B8E2C4A00F05329 /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7350222B8E2C4A00F05329 /* InfoPanelView.swift */; };
+		9C7350252B8E34DD00F05329 /* ControlImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7350242B8E34DD00F05329 /* ControlImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		9C18259A2B8A842F00F64B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C18259D2B8A842F00F64B17 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9C7350222B8E2C4A00F05329 /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
+		9C7350242B8E34DD00F05329 /* ControlImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				9C7350222B8E2C4A00F05329 /* InfoPanelView.swift */,
+				9C7350242B8E34DD00F05329 /* ControlImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C7350252B8E34DD00F05329 /* ControlImageView.swift in Sources */,
 				9C1825992B8A842E00F64B17 /* ContentView.swift in Sources */,
 				9C1825972B8A842E00F64B17 /* PinchSwiftUIApp.swift in Sources */,
 				9C7350232B8E2C4A00F05329 /* InfoPanelView.swift in Sources */,
