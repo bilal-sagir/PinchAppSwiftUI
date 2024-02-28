@@ -15,6 +15,9 @@ struct ContentView: View {
     @State private var imageOffset: CGSize = .zero
     @State private var isDrawerOpen: Bool = false
     
+    let pages: [Page] = pagesData
+    @State private var pageIndex: Int = 1
+    
     // MARK: - FUNCTIONS
     
     func resetImageState() {
@@ -22,6 +25,10 @@ struct ContentView: View {
             imageScale = 1
             imageOffset = .zero
         }
+    }
+    
+    func currentPage() -> String {
+        return pages[pageIndex - 1].imageName
     }
     // MARK: - CONTENT
     
@@ -32,7 +39,7 @@ struct ContentView: View {
                 Color.clear // added to handle the info panel layout
                 
                 // MARK: - PAGE IMAGE
-                Image("magazine-front-cover")
+                Image(currentPage())
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(
@@ -173,6 +180,20 @@ struct ContentView: View {
                         }
                     
                     // MARK: - THUMBNAILS
+                    ForEach(pages) { page in
+                        Image(page.thumbnailName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .cornerRadius(8)
+                            .shadow(radius: 4)
+                            .opacity(isDrawerOpen ? 1 : 0)
+                            .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
+                            .onTapGesture {
+                                isAnimating = true
+                                pageIndex = page.id
+                            }
+                    }
                     Spacer()
                 } //: DRAWER
                     .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
@@ -183,7 +204,6 @@ struct ContentView: View {
                     .padding(.top, UIScreen.main.bounds.height / 12)
                     .offset(x: isDrawerOpen ? 20 : 215)
                 , alignment: .topTrailing
-                    
             )
         } //: NAVIGATION
     }
