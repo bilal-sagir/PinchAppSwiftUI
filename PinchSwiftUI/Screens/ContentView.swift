@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
+    
     // MARK: - FUNCTIONS
     
     func resetImageState() {
@@ -66,6 +67,27 @@ struct ContentView: View {
                                         imageScale = 1
                                         imageOffset = .zero
                                     }
+                                }
+                            })
+                    )
+                
+                    // MARK: - 3. MAGNIFICATION
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged({ value in
+                                withAnimation(.linear(duration: 1)) {
+                                    if imageScale >= 1 && imageScale <= 5 {
+                                        imageScale = value
+                                    } else if imageScale > 5 {
+                                        imageScale = 5
+                                    }
+                                }
+                            })
+                            .onEnded({ _ in
+                                if imageScale > 5 {
+                                    imageScale = 5
+                                } else if imageScale <= 1 {
+                                    resetImageState()
                                 }
                             })
                     )
